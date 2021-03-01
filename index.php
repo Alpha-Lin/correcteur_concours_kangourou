@@ -83,7 +83,6 @@
                 $niveau = $bdd->prepare("SELECT niveau FROM sujets WHERE année = ?"); // Vérifie que le niveau demandé existe pour l'année demandée
                 $niveau->execute(array($_GET['année']));
                 if(!in_array($_GET['niveau'], $niveau->fetchAll(PDO::FETCH_COLUMN))){
-                    print_r($_GET['niveau']);
                     echo "<p>Erreur :  le niveau demandé n'existe pas pour l'année demandée.</p>";
                 }else{
                     $reponses = $bdd->prepare("SELECT réponses FROM sujets WHERE année = ? AND niveau = ?"); // Va chercher les réponses demandées
