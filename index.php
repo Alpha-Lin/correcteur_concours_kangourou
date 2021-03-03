@@ -10,7 +10,7 @@
 <body>
     <form>
         <label for="réponse">Réponse : </label>
-        <input type="text" name="réponse" id="réponse" required pattern="[A-E]{24}[1-9]{2}">
+        <input name="réponse" id="réponse" style="text-transform:uppercase" required pattern="[A-E]{24}[1-9]{2}">
         <button type="button" onclick="enlever_lettre()">&lt;=</button>
 
         <br>
