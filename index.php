@@ -9,66 +9,68 @@
 </head>
 <body>
     <form>
-        <label for="réponse">Réponse : </label>
-        <input name="réponse" id="réponse" required pattern="[A-E]{24}[1-9]{2}" oninput="const p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
-        <button type="button" onclick="enlever_lettre()">&lt;=</button>
+        <div>
+            <label for="réponse">Réponse : </label>
+            <input name="réponse" id="réponse" required placeholder="ABECDEEABCDEABCCCDDABDDA46" pattern="[A-E]{24}[1-9]{2}" size=26 oninput="const p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+            <button type="button" onclick="enlever_lettre()">&lt;=</button>
+        </div>
 
-        <br>
+        <div>
+            <button type="button" onclick="ajouter_lettre('A')">A</button>
+            <button type="button" onclick="ajouter_lettre('B')">B</button>
+            <button type="button" onclick="ajouter_lettre('C')">C</button>
+            <button type="button" onclick="ajouter_lettre('D')">D</button>
+            <button type="button" onclick="ajouter_lettre('E')">E</button>
+            <button type="button" onclick="ajouter_lettre('0')">0</button>
+            <button type="button" onclick="ajouter_lettre('1')">1</button>
+            <button type="button" onclick="ajouter_lettre('2')">2</button>
+            <button type="button" onclick="ajouter_lettre('3')">3</button>
+            <button type="button" onclick="ajouter_lettre('4')">4</button>
+            <button type="button" onclick="ajouter_lettre('5')">5</button>
+            <button type="button" onclick="ajouter_lettre('6')">6</button>
+            <button type="button" onclick="ajouter_lettre('7')">7</button>
+            <button type="button" onclick="ajouter_lettre('8')">8</button>
+            <button type="button" onclick="ajouter_lettre('9')">9</button>
+        </div>
 
-        <button type="button" onclick="ajouter_lettre('A')">A</button>
-        <button type="button" onclick="ajouter_lettre('B')">B</button>
-        <button type="button" onclick="ajouter_lettre('C')">C</button>
-        <button type="button" onclick="ajouter_lettre('D')">D</button>
-        <button type="button" onclick="ajouter_lettre('E')">E</button>
-        <button type="button" onclick="ajouter_lettre('0')">0</button>
-        <button type="button" onclick="ajouter_lettre('1')">1</button>
-        <button type="button" onclick="ajouter_lettre('2')">2</button>
-        <button type="button" onclick="ajouter_lettre('3')">3</button>
-        <button type="button" onclick="ajouter_lettre('4')">4</button>
-        <button type="button" onclick="ajouter_lettre('5')">5</button>
-        <button type="button" onclick="ajouter_lettre('6')">6</button>
-        <button type="button" onclick="ajouter_lettre('7')">7</button>
-        <button type="button" onclick="ajouter_lettre('8')">8</button>
-        <button type="button" onclick="ajouter_lettre('9')">9</button>
+        <div>
+            <label for="année">Année : </label>
+            <select name="année" id="année" onchange="année_changée(this.value)">
+                <?php
 
-        <br>
+                // On initialise une connexion à la BDD
 
-        <label for="année">Année : </label>
-        <select name="année" id="année">
-            <?php
+                $options =
+                [
+                    PDO::ATTR_EMULATE_PREPARES => false
+                ];
 
-            // On initialise une connexion à la BDD
+                try{
+                    $bdd = new PDO('mysql:host=localhost;dbname=kangourou', 'root', '');
+                }catch(PDOException $pe){
+                    die('<p>Erreur lors de l\'accès à la base de donnée : </p>');
+                }
 
-            $options =
-            [
-                PDO::ATTR_EMULATE_PREPARES => false
-            ];
+                $années = $bdd->query("SELECT année FROM sujets GROUP BY année")->fetchAll(PDO::FETCH_COLUMN);
 
-            try{
-                $bdd = new PDO('mysql:host=localhost;dbname=kangourou', 'root', '');
-            }catch(PDOException $pe){
-                die('<p>Erreur lors de l\'accès à la base de donnée : </p>');
-            }
-
-            $années = $bdd->query("SELECT année FROM sujets GROUP BY année")->fetchAll(PDO::FETCH_COLUMN);
-
-            // Affiche toutes les années des différents sujets inscrits dans la BDD
-            foreach($années as $année){
-                echo '<option value="'. $année .'">'. $année .'</option>';
-            }?>
-        </select>
-
-        <br>
-
-        <label for="niveau">Niveau : </label>
-        <select name="niveau" id="niveau">
-            <option value="E">E</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="P">P</option>
-            <option value="J">J</option>
-            <option value="S">S</option>
-        </select>
+                // Affiche toutes les années des différents sujets inscrits dans la BDD
+                foreach($années as $année){
+                    echo '<option value="'. $année .'">'. $année .'</option>';
+                }?>
+            </select>
+        </div>
+        
+        <div>
+            <label for="niveau">Niveau : </label>
+            <select name="niveau" id="niveau">
+                <option value="E" id="niveau_E">Ecoliers (CE2 - CM1 - CM2)</option>
+                <option value="B" id="niveau_B">Benjamins (6ème - 5ème)</option>
+                <option value="C" id="niveau_C">Cadets (4ème - 3ème - CAP / BEP)</option>
+                <option value="P" hidden id="niveau_P">P (Lycées Professionnels)</option>
+                <option value="J" id="niveau_J">Juniors (Lycées)</option>
+                <option value="S" id="niveau_S">Etudiants (TS, Bac+)</option>
+            </select>
+        </div>
 
         <input type="submit" value="Envoyer">
     </form>
@@ -97,13 +99,14 @@
                         $bonnesRéponses = 0;
 
                         echo '<table>
+                                <caption>Résultats pour le niveau '. $_GET['niveau'] . ' de l\'année '. $_GET['année'] . '</caption>
                                 <thead>
                                     <tr>
                                         <th colspan="2">Réponses</th>
                                     </tr>
                                     <tr>
                                         <th>Élève</th>
-                                        <th>Solutions</th>
+                                        <th>Solution</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -122,7 +125,7 @@
 
                         echo '</tbody>
                             </table>
-                            <p>Nombre de bonnes réponses : ' . $bonnesRéponses . '/26';
+                            <p>Nombre de bonnes réponses : ' . $bonnesRéponses . '/26</p>';
                     }
                 }
             }
