@@ -9,7 +9,9 @@ function enlever_lettre(){
 function année_changée(année){
     if (année <= 2009){
         document.getElementById('niveau_P').hidden = true
-        document.getElementById('niveau').selectedIndex = 0
+        if (document.getElementById('niveau').selectedIndex === 3){
+            document.getElementById('niveau').selectedIndex = 0
+        }
         document.getElementById('niveau_E').textContent = "Ecoliers (CE2 - CM1 - CM2)"
         document.getElementById('niveau_B').textContent = "Benjamins (6ème - 5ème)"
         document.getElementById('niveau_C').textContent = "Cadets (4ème - 3ème - CAP / BEP)"
@@ -17,7 +19,9 @@ function année_changée(année){
         document.getElementById('niveau_S').textContent = "Etudiants (TS, Bac+)"
     }else if (année == 2010){
         document.getElementById('niveau_P').hidden = true
-        document.getElementById('niveau').selectedIndex = 0
+        if (document.getElementById('niveau').selectedIndex === 3){
+            document.getElementById('niveau').selectedIndex = 0
+        }
         document.getElementById('niveau_E').textContent = "Ecoliers (CE2 - CM1 - CM2)"
         document.getElementById('niveau_B').textContent = "Benjamins (6ème - 5ème)"
         document.getElementById('niveau_C').textContent = "Cadets (4ème - 3ème - voie pro.)"
