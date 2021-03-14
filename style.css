@@ -1,6 +1,9 @@
 body {
+    background-color: rgb(48, 172, 48)
+}
+
+#div_réponses {
     margin-top: 50px;
-    background-color: rgb(48, 172, 48);
     text-align: center;
     font-size: x-large
 }
@@ -50,4 +53,11 @@ td {
     padding: 5px;
     text-align: center;
     background-color: #ffffff
+}
+
+.div_comm {
+    border: solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    background-color: rgb(49, 173, 211);
 }
