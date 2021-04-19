@@ -61,3 +61,35 @@ td {
     padding-left: 5px;
     background-color: rgb(49, 173, 211);
 }
+
+body {
+    margin: 0 1%
+}
+
+.main-header {
+    text-align: center;
+}
+
+.login-icon {
+    position: absolute;
+    right: 0;
+    padding: 1%;
+}
+
+.header-nav {
+    border: rgb(231, 80, 21);
+    border-style: groove;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header-nav a {
+    word-break: keep-all;
+    margin: 0 6%;
+    padding: 0.3% 3%;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    border: orangered solid
+}
+

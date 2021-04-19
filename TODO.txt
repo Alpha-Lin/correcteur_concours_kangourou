@@ -1,0 +1,4 @@
+- système d'utilisateurs avec points
+- chat
+- accès sans inscription
+- crédit CC
