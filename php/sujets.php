@@ -29,8 +29,6 @@
             <select name="année" id="année" onchange="année_changée(this.value)">
                 <?php
 
-                require 'php/connexion_bdd.php';
-
                 $années = $bdd->query("SELECT année FROM sujets GROUP BY année")->fetchAll(PDO::FETCH_COLUMN);
 
                 // Affiche toutes les années des différents sujets inscrits dans la BDD

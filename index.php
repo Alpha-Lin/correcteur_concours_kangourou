@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <?php require('html/header.html')?>
+    <?php require('php/header.php')?>
 
     <?php if(isset($_GET['v']) AND !empty($_GET['v'])){
         switch ($_GET['v']){
