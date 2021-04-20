@@ -63,7 +63,7 @@ td {
 }
 
 body {
-    margin: 0 1%
+    margin: 0
 }
 
 .main-header {
@@ -93,3 +93,28 @@ body {
     border: orangered solid
 }
 
+#btnLogin{
+    display: none;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+#form-connexion {
+    display: none;
+    width: 20%;
+    height: 100%;
+    outline: 1px solid;
+    position: fixed;
+    right: 0;
+    background: rgb(94, 93, 93);
+    text-align: center;
+}
+
+#form-connexion > form > div{
+    margin-right: 20%;
+    text-align: right;
+}

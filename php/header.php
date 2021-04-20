@@ -16,12 +16,14 @@ session_start();
 
 ?>
 
+<script src="js/login_panel.js"></script>
+
 <header class="main-header">
 
     <header class="header-image">
         <img src="img/kangourou.jpg" alt="bannière kangourou">
 
-        <img src="img/login.svg" alt="connexion" width="50" class="login-icon">
+        <img src="img/login.svg" alt="connexion" width="50" class="login-icon" onclick="show_login()">
     </header>
     
     <nav class="header-nav">
