@@ -7,9 +7,8 @@ if(isset($_POST['pseudo']) AND !empty($_POST['pseudo'])){
         $informations_utilisateur = $req->fetchAll(PDO::FETCH_ASSOC);
 
         if(!empty($informations_utilisateur)){
-            foreach($informations_utilisateur[0] as $info){
-                echo '<p>' . $info . '</p>';
-            }
+            $informations_utilisateur = $informations_utilisateur[0];
+            require('php/classement_show.php');
         }else{
             echo '<p>Utilisateur non trouvé</p>';
         }

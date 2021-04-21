@@ -18,7 +18,7 @@
                     require('php/classement.php');
                     break;
                 case 2:
-                    require('php/compte.php');
+                    require('php/my_account.php');
                     break;
                 case 3:
                     require('php/about.php');

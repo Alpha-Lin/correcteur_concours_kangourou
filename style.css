@@ -68,6 +68,7 @@ body {
 
 .main-header {
     text-align: center;
+    margin: 1%
 }
 
 .login-icon {
@@ -117,4 +118,9 @@ body {
 #form-connexion > form > div{
     margin-right: 20%;
     text-align: right;
+}
+
+#account_panel{
+    border: purple solid 1px;
+    margin: 1%
 }
